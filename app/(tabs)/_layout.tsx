@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import {Tabs} from "expo-router"
-import { Ionicons} from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
+import { Tabs } from "expo-router"
+import { StyleSheet } from 'react-native'
 
 const Layout = () => {
   return (
@@ -23,6 +22,16 @@ const Layout = () => {
         
         }}
         />
+                <Tabs.Screen
+        name="search"
+        options={{
+            title:"Search",
+            tabBarIcon: ({color})=>
+                <Ionicons name ="search-outline" size={24} color={color}/>,
+            
+        
+        }}
+        />
         <Tabs.Screen
         name="profile"
         options={{
@@ -34,16 +43,7 @@ const Layout = () => {
         
         }}
         />
-        <Tabs.Screen
-        name="search"
-        options={{
-            title:"Search",
-            tabBarIcon: ({color})=>
-                <Ionicons name ="search-outline" size={24} color={color}/>,
-            
-        
-        }}
-        />
+
 
 
     </Tabs>

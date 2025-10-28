@@ -273,9 +273,6 @@ const Home = () => {
   // State for the search text input
   const [text, onChangeText] = React.useState("");
 
-  // Router instance for navigation
-  
-
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContentStyle}>

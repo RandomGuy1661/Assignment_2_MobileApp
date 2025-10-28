@@ -305,7 +305,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     margin: 20,
-    paddingTop: 30,
+    paddingTop: 60,
     paddingHorizontal: 20,
     width: '100%',
     alignItems: 'center'

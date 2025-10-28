@@ -1,5 +1,7 @@
+import Ionicons from '@expo/vector-icons/Ionicons'
+import { router } from 'expo-router'
 import React from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, TextInput, View } from 'react-native'
 import SearchGrid from '../components/searchGrid'
 
 const Home = () => {
@@ -268,11 +270,18 @@ const Home = () => {
   }
 ]
 
+  // State for the search text input
+  const [text, onChangeText] = React.useState("");
+
+  // Router instance for navigation
+  
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContentStyle}>
         <View style={styles.header}>
-          <Text>Search</Text>
+          <Ionicons name="chevron-back" size={24} color="grey" onPress={() => router.back()} />
+          <TextInput value={text} onChangeText={onChangeText} placeholder='Search' style={styles.textBar}></TextInput>
         </View>
         <View style={styles.gridContainer}>
         {
@@ -300,12 +309,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     margin: 20,
     paddingTop: 30,
-    justifyContent: 'space-between',
-    alignItems: 'baseline'
+    paddingHorizontal: 20,
+    width: '100%',
+    alignItems: 'center'
+
   },
   gridContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap', 
     width: '100%',
   },
+  textBar: {
+    backgroundColor: '#c7c7c7ff',
+    padding: 10,
+    borderRadius: 10,
+    fontSize: 18,
+    flex: 1,
+    textAlign: 'center',
+    color: 'white',
+    marginLeft: 30
+
+
+  }
 })

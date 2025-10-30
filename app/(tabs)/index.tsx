@@ -1,56 +1,67 @@
 import { StyleSheet, Text, Image, View, Platform, StatusBar, ScrollView, FlatList } from 'react-native'
 import React from 'react'
+import { Ionicons } from '@expo/vector-icons'
 
 const stories = [
 {
   id: "1",
   name: "Emma Johnson",
   image: "https://randomuser.me/api/portraits/women/81.jpg",
+  username: "EmmaJ81"
 },
 {
   id: "2",
   name: "Liam Chen",
   image: "https://randomuser.me/api/portraits/men/72.jpg",
+  username: "LiamChen_72"
 },
 {
   id: "3",
   name: "Sofia Patel",
   image: "https://randomuser.me/api/portraits/women/63.jpg",
+  username: "SofiaPatel63"
 },
 {
   id: "4",
   name: "Noah Williams",
   image: "https://randomuser.me/api/portraits/men/54.jpg",
+  username: "NoahW54"
 },
 {
   id: "5",
   name: "Isabella Müller",
   image: "https://randomuser.me/api/portraits/women/45.jpg",
+  username: "IsaMuller45"
 },
 {
   id: "6",
   name: "Oliver Kim",
   image: "https://randomuser.me/api/portraits/men/36.jpg",
+  username: "OliKim36"
 },
 {
   id: "7",
   name: "Ava Rodriguez",
   image: "https://randomuser.me/api/portraits/women/27.jpg",
+  username: "AvaR27"
 },
 {
   id: "8",
   name: "Ethan Novak",
   image: "https://randomuser.me/api/portraits/men/18.jpg",
+  username: "EthanNovak_18"
 },
 {
   id: "9",
   name: "Mia Svensson",
   image: "https://randomuser.me/api/portraits/women/9.jpg",
+  username: "MiaSvensson9"
 },
 {
   id: "10",
   name: "Lucas Ferreira",
   image: "https://randomuser.me/api/portraits/men/91.jpg",
+  username: "LucasF91"
 },
 ];
  
@@ -170,7 +181,7 @@ const posts = [
     username: "ryan_surf",
     profileImage: "https://randomuser.me/api/portraits/men/94.jpg",
     postImage:
-      "https://images.pexels.com/photos/3584578/pexels-photo-3584578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/416528/pexels-photo-416528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     likes: 587,
     caption: "Salt in my hair, ocean in my soul 🏄‍♂️ #wavechaser",
     comments: 94,
@@ -189,7 +200,7 @@ const Mainpage = () => {
             }}
             style={styles.logo}     
             />
-            <Text style={styles.headerText}>Insta Clone</Text>
+            <Text style={styles.headerText}>InstaDupe</Text>
         </View>
         <ScrollView 
         horizontal 
@@ -202,7 +213,7 @@ const Mainpage = () => {
                     source={{uri: story.image}}
                     style={styles.storyImage}
                     />
-                    <Text style={styles.storyText} numberOfLines={1}>{story.name}</Text>
+                    <Text style={styles.storyText}>{story.username}</Text>
 
                   </View>
                 ))
@@ -226,12 +237,33 @@ const Mainpage = () => {
               {/* Post Image*/}
               <Image source={{uri:item.postImage}} style={styles.postImage}/>
               {/*Likes and Captions */}
-              <View style={styles.postDetails}>
-                <Text style={styles.likes}>{item.likes} Likes</Text>
-                <Text style={styles.caption}>
-                  <Text style={styles.bold}> {item.username} {item.caption}</Text>
-                </Text>
+              <View style={styles.postDetailsLegends}>
+                <View style={styles.postDetailGroup}>
+                  <View style={styles.postDetailsLeg}>
+                    <Ionicons size= {25} color= {"white"} name="heart-outline"></Ionicons>
+                    <Text style={styles.legends}>{item.likes}</Text>
+                  </View>
+                  <View style={styles.postDetailsLeg}>
+                    <Ionicons size= {25} color= {"white"} name="chatbubble-outline"></Ionicons>
+                    <Text style={styles.legends}>{item.comments}</Text>
+                  </View>
+                  <View style={styles.postDetailsLeg}>
+                    <Ionicons size= {25} color= {"white"} name="sync-outline"></Ionicons>
+                    <Text style={styles.legends}>{item.retweet}</Text>
+                  </View>
+                  <View style={styles.postDetailsLeg}>
+                    <Ionicons size= {25} color= {"white"} name="paper-plane-outline"></Ionicons>
+                    <Text style={styles.legends}>{item.message}</Text>
+                  </View>
+                </View>
+                <View style={styles.postDetailsBookMark}>
+                  <Ionicons size= {25} color= {"white"} name="bookmark-outline"></Ionicons>
+                </View>
               </View>
+                <View style={styles.caption}>
+                  <Text style={styles.bold}> {item.username}{item.caption}</Text>
+                </View>
+              
             </View>
           )
          }
@@ -243,11 +275,12 @@ const Mainpage = () => {
 export default Mainpage;
 
 const styles = StyleSheet.create({
-
     container:{
         flex:1,
-        backgroundColor:'#fff',
+        backgroundColor:'black',
         paddingTop: Platform.OS !== 'ios' ? StatusBar.currentHeight : 0,
+        width: 800,
+        alignSelf: "center",
     },
     header:{
         flexDirection: 'row',
@@ -268,11 +301,13 @@ const styles = StyleSheet.create({
     headerText:{
         fontSize: 18,
         fontWeight: 'bold',
+        color: "white",
     },
     storyContainer:{
         flexDirection: 'row',
         paddingVertical: 10,
         paddingHorizontal: 15,
+        height: 600,
     },
 
     story:{
@@ -295,7 +330,7 @@ const styles = StyleSheet.create({
       marginTop: 5,
       fontSize: 12,
       textAlign: 'center',
-      color: '#333',
+      color: 'white',
       width: 85,
       overflow: 'hidden',
       paddingBottom: 10,
@@ -327,6 +362,7 @@ const styles = StyleSheet.create({
     username:{
       fontWeight: "bold",
       fontSize: 16,
+      color: "white",
     },
 
     postImage:{
@@ -338,19 +374,46 @@ const styles = StyleSheet.create({
 
     },
 
-    postDetails:{
-      padding:10,
+    postDetailsLegends:{
+      paddingHorizontal: 10,
+      paddingVertical: 6,
+      flexDirection: 'row',
+      alignItems: 'center',
     },
 
-    likes:{
+    postDetailGroup:{
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 24,
+      marginRight: 250,
+    },
+
+    postDetailsLeg:{
+      flexDirection: 'row',
+      alignItems: "center",
+      gap: 6,
+      marginRight: 50,
+
+    },
+    postDetailsBookMark:{
+      flexDirection: 'row',
+      flex: 3,
+      
+    },
+
+    legends:{
       fontWeight:"bold",
+      color: "white",
+
     },
 
     caption:{
       marginTop:5,
+      color: "white",
     },
 
     bold:{
       fontWeight: "bold",
+      color: "white",
     }
 })
